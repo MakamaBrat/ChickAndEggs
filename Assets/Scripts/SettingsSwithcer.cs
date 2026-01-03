@@ -94,7 +94,5 @@ public class SettingsSwitcher : MonoBehaviour
             img.color = c;
         }
 
-        if (btn != null)
-            btn.interactable = state; // можно убрать, если кнопка должна нажиматься всегда
     }
 }
