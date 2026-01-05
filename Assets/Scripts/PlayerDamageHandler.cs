@@ -13,6 +13,7 @@ public class PlayerDamageHandler : MonoBehaviour
     public Animator animator;
     public AudioSource au;
     public AudioSource bad;
+    public ScoreManager scoreManager;
     public void TakeDamage()
     {
         if (isInDamageWindow)
@@ -22,11 +23,12 @@ public class PlayerDamageHandler : MonoBehaviour
         }
 
         isInDamageWindow = true;
-        animator.Play("PlayerWrongett");
-        if (damageCoroutine != null)
-            StopCoroutine(damageCoroutine);
+        //  animator.Play("PlayerWrongett");
+        ///  if (damageCoroutine != null)
+        //       StopCoroutine(damageCoroutine);
 
-        damageCoroutine = StartCoroutine(DamageTimer());
+        GameOver();
+      //  damageCoroutine = StartCoroutine(DamageTimer());
         au.Play();
     }
 
@@ -57,6 +59,7 @@ public class PlayerDamageHandler : MonoBehaviour
             animator.Play("PlayerStateAnimation");
             damageCoroutine = StartCoroutine(DamageTimer());
             au.Play();
+            scoreManager.AddScore(1);
             Destroy(collision.gameObject);
         }
 
